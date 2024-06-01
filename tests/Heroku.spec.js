@@ -257,7 +257,7 @@ test("Dropdown", async function({page}){
     await expect(value.includes("julie")).toBeTruthy(); //this fails bcoz julie is not in the dropdown   
 })
 
-test("Form Authentication", async function({page}){
+test(`@Web Form Authentication`, async function({page}){
     // Navigation
     await page.goto("https://the-internet.herokuapp.com/"); 
 
@@ -278,7 +278,7 @@ test("Form Authentication", async function({page}){
     await page.getByRole('button', {name: ' Login'}).click();
     await page.waitForTimeout(5000);
     //await expect(page.getByRole('heading', {name: 'secure area', level: 2 })).toBeVisible();
-    await page.waitForTimeout(5000);
+    //await page.waitForTimeout(5000);
 
     if((username === 'tomsmith') && (password === 'SuperSecretPassword!')){
         await expect(page.getByRole('heading', {name: 'secure area', level: 2 })).toBeVisible();
@@ -342,7 +342,7 @@ test("Key Presses", async function({page}){
 
 })
 
-test("Hover", async function({page}){
+test(`@Web Hover`, async function({page}){
     // Navigation
     await page.goto("https://the-internet.herokuapp.com/"); 
 
@@ -427,7 +427,7 @@ test("Handle Alert Message", async function({page}){
 
 })
 
-test.only("Handle Confirm Box", async function({page}){
+test("Handle Confirm Box", async function({page}){
     //navigation
     await page.goto("https://the-internet.herokuapp.com/javascript_alerts");
 
@@ -441,3 +441,34 @@ test.only("Handle Confirm Box", async function({page}){
     await page.getByRole('button', {name: "Click for JS Confirm"}).click();
    
 })
+
+test("Handle Prompt Box", async function({page}){
+    //navigation
+    await page.goto("https://the-internet.herokuapp.com/javascript_alerts");
+
+    page.on("dialog", async (dialogWindow)=> {
+        expect(dialogWindow.type()).toContain("prompt");
+        expect(dialogWindow.message()).toContain("I am a JS prompt");
+        await dialogWindow.accept("JS");
+       // await dialogWindow.dismiss();
+    })
+
+    await page.getByRole('button', {name: "Click for JS Prompt"}).click();
+    await page.waitForTimeout(5000);
+})
+
+test(`@Web Client App login`, async ({ page }) => {
+    //js file- Login js, DashboardPage
+    const email = "anshika@gmail.com";
+    const productName = 'zara coat 3';
+    const products = page.locator(".card-body");
+    await page.goto("https://rahulshettyacademy.com/client");
+    await page.locator("#userEmail").fill(email);
+    await page.locator("#userPassword").type("Iamking@000");
+    await page.locator("[value='Login']").click();
+    await page.waitForLoadState('networkidle');
+    await page.locator(".card-body b").first().waitFor();
+    const titles = await page.locator(".card-body b").allTextContents();
+    console.log(titles); 
+  
+ })
