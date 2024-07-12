@@ -3,7 +3,7 @@ Feature: Ecommerce validations
 
     @Regression
     Scenario: Placing the order
-        Given a login to Ecommerce application with "anshika@gmail.com" and "Iamking@000"
+        Given a login to Ecommerce application with "edwinmukil@gmail.com" and "Example@1"
         When Add "ZARA COAT 3" to cart
         Then Verify "ZARA COAT 3" is displayed in the cart
 

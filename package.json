@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "Webtests":"npx playwright test --grep \"@Web\"",
-    "dragNdrop" : "npx playwright test -g \"Drag and Drop\""
+    "Webtests": "npx playwright test --grep \"@Web\"",
+    "dragNdrop": "npx playwright test -g \"Drag and Drop\""
   },
   "keywords": [],
   "author": "",
@@ -13,9 +13,11 @@
   "devDependencies": {
     "@playwright/test": "^1.44.1",
     "@types/node": "^20.12.12",
-    "allure-playwright": "^2.15.1"
+    "allure-playwright": "^2.15.1",
+    "playwright-bdd": "^6.6.0"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^10.8.0"
+    "@cucumber/cucumber": "^10.8.0",
+    "exceljs": "^4.4.0"
   }
 }

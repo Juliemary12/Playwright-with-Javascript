@@ -3,6 +3,10 @@ const {Given, When, Then} = require('@cucumber/cucumber');
 const { POManager } = require('../../PageObjects/POManager');
 const { expect } = require('@playwright/test');
 
+//import { createBdd } from 'playwright-bdd';
+
+//const { Given, When, Then } = createBdd();
+
 const playwright = require('@playwright/test');
 
 Given('a login to Ecommerce application with {string} and {string}',{timeout:100*1000}, async function (username, password) {

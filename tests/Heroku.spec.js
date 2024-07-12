@@ -1,6 +1,7 @@
 
 
 const {test, expect} = require('@playwright/test')
+const excel = require('../utils/ExcelReader.spec');
 
 test("Verify Url", async function({page}){
     //Navigation
@@ -472,3 +473,12 @@ test(`@Web Client App login`, async ({ page }) => {
     console.log(titles); 
   
  })
+
+ 
+
+
+test.only("trying excel", async () => {
+
+    let data = await excel.getData(1);
+    console.log(data)
+})
